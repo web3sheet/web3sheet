@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  :root {
+    --web3sheet-black: #0a0a0a;
+    --web3sheet-text: #dbdbdb;
+    --web3sheet-white: #ffffff;
+    --w3s-primary-dark: #00b35f;
+
+    --w3s-background: var(--web3sheet-black);
+    --w3s-foreground: var(--web3sheet-text);
+
+    --w3s-card: 240 10% 3.9%;
+    --w3s-card-foreground: 0 0% 98%;
+    --w3s-popover: 240 10% 3.9%;
+    --w3s-popover-foreground: 0 0% 98%;
+    --w3s-primary: 0 0% 98%;
+    --w3s-primary-foreground: 240 5.9% 10%;
+    --w3s-secondary: 240 3.7% 15.9%;
+    --w3s-secondary-foreground: 0 0% 98%;
+    --w3s-muted: 240 3.7% 20%;
+    --w3s-muted-foreground: 240 5% 64.9%;
+    --w3s-accent: 240 3.7% 15.9%;
+    --w3s-accent-foreground: 0 0% 98%;
+    --w3s-destructive: 0 100% 61%;
+    --w3s-destructive-foreground: 0 85.7% 97.3%;
+    --w3s-warning: 32.39 96% 67%;
+    --w3s-warning-foreground: 0 0% 98%;
+    --w3s-info: 0.56 100% 48%;
+    --w3s-info-foreground: 0 0% 98%;
+    --w3s-border: 240 3.7% 15.9%;
+    --w3s-input: 240 3.7% 15.9%;
+    --w3s-ring: 240 4.9% 83.9%;
+
+    --w3s-radius: 0.5rem;
+  }
+}

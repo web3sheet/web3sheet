@@ -1,0 +1,54 @@
+{
+  "name": "web3sheet",
+  "author": {
+    "email": "aerilym@pm.me",
+    "name": "Aerilym",
+    "url": "https://github.com/aerilym"
+  },
+  "scripts": {
+    "turbo": "DO_NOT_TRACK=1 turbo",
+    "build": "pnpm turbo build",
+    "start": "pnpm turbo start",
+    "dev": "pnpm turbo dev",
+    "check-types": "pnpm turbo check-types",
+    "lint": "pnpm turbo lint",
+    "check": "biome check --write",
+    "format": "biome format --write",
+    "test": "pnpm turbo test",
+    "transpile": "pnpm turbo transpile",
+    "engines": "./scripts/engines.sh",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/types": "^19.0.3",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.12",
+    "@web3sheet/typescript-config": "workspace:*",
+    "cross-env": "^7.0.3",
+    "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "3.2.5",
+    "prettier-plugin-tailwindcss": "^0.6.1",
+    "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
+    "turbo": "2.0.5",
+    "typescript": "5.4.5"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9",
+    "yarn": "use pnpm",
+    "npm": "use pnpm"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    }
+  },
+  "packageManager": "pnpm@9.1.3+sha512.7c2ea089e1a6af306409c4fc8c4f0897bdac32b772016196c469d9428f1fe2d5a21daf8ad6512762654ac645b5d9136bb210ec9a00afa8dbc4677843ba362ecd"
+}

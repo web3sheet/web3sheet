@@ -1,0 +1,47 @@
+{
+  "name": "@web3sheet/core",
+  "version": "0.0.4",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./hooks/*": "./dist/hooks/*.js",
+    "./lib/*": "./dist/lib/*.js",
+    "./providers/*": "./dist/providers/*.js",
+    "./util/*": "./dist/util/*.js"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "transpile": "tsup --config tsup.config.ts",
+    "build": "rm -rf dist && pnpm transpile"
+  },
+  "devDependencies": {
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@web3sheet/typescript-config": "workspace:*",
+    "@web3sheet/ui": "workspace:*",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "tsup": "^8.3.5"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.32.1",
+    "@wagmi/connectors": "5.5.3",
+    "@walletconnect/ethereum-provider": "^2.14.0",
+    "@web3sheet/util": "workspace:*",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "usepref": "^0.0.1",
+    "viem": "2.21.54",
+    "wagmi": "2.13.5"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9",
+    "yarn": "use pnpm",
+    "npm": "use pnpm"
+  }
+}

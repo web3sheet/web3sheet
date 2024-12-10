@@ -1,0 +1,50 @@
+{
+  "name": "@web3sheet/demo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.5.0",
+    "@web3sheet/wallet": "workspace:*",
+    "@web3sheet/ui": "workspace:*",
+    "@web3sheet/core": "workspace:*",
+    "@web3sheet/util": "workspace:*",
+    "@tanstack/react-query": "5.51.1",
+    "better-sqlite3-multiple-ciphers": "11.1.2",
+    "class-variance-authority": "^0.7.0",
+    "date-fns": "^3.6.0",
+    "next": "15.0.4",
+    "next-intl": "^3.14.1",
+    "pino": "^9.2.0",
+    "pino-pretty": "^11.2.1",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react-hook-form": "^7.53.2",
+    "rtl-detect": "^1.1.2",
+    "server-only": "^0.0.1",
+    "sharp": "0.32.6",
+    "wagmi": "2.13.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@web3sheet/typescript-config": "workspace:*",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/rtl-detect": "^1.0.3",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9",
+    "yarn": "use pnpm",
+    "npm": "use pnpm"
+  }
+}

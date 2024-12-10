@@ -1,0 +1,11 @@
+{
+  "extends": "@web3sheet/typescript-config/react-library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["./**.ts", "jest.config.js"],
+  "exclude": ["node_modules", "turbo", "dist"]
+}

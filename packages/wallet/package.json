@@ -1,0 +1,59 @@
+{
+  "name": "@web3sheet/wallet",
+  "version": "0.0.3",
+  "author": {
+    "email": "aerilym@pm.me",
+    "name": "Aerilym",
+    "url": "https://github.com/aerilym"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./tabs": "./components/tabs/index.js",
+    "./tabs/*": "./components/tabs/*.js",
+    "./tabs/settings/*": "./dist/components/tabs/settings/*.js",
+    "./components/*": "./components/*.tsx",
+    "./hooks/*": "./hooks/*.tsx",
+    "./lib/*": "./lib/*.ts",
+    "./providers/*": "./providers/*.tsx"
+  },
+  "sideEffects": false,
+  "files": ["dist/"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "transpile": "tsup --config tsup.config.ts",
+    "build": "rm -rf dist && pnpm transpile"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@web3sheet/typescript-config": "workspace:*",
+    "postcss": "^8.4.38",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "tailwindcss": "^3.4.15",
+    "tailwindcss-selection-variant": "^0.1.0",
+    "tsup": "^8.3.5"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@web3sheet/core": "workspace:*",
+    "@web3sheet/util": "workspace:*",
+    "@web3sheet/ui": "workspace:*",
+    "lucide-react": "^0.376.0",
+    "next": "15.0.4",
+    "react-hook-form": "^7.53.2",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
+    "viem": "2.21.54",
+    "wagmi": "2.13.5",
+    "zod": "^3.23.8"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9",
+    "yarn": "use pnpm",
+    "npm": "use pnpm"
+  }
+}

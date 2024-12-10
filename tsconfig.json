@@ -1,0 +1,3 @@
+{
+  "extends": "@web3sheet/typescript-config/base.json"
+}

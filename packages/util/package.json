@@ -1,0 +1,34 @@
+{
+  "name": "@web3sheet/util",
+  "version": "0.0.2",
+  "author": {
+    "email": "aerilym@pm.me",
+    "name": "Aerilym",
+    "url": "https://github.com/aerilym"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./string": "./dist/string.js",
+    "./maths": "./dist/maths.js"
+  },
+  "sideEffects": false,
+  "files": ["dist/"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "transpile": "tsup --config tsup.config.ts",
+    "build": "rm -rf dist && pnpm transpile"
+  },
+  "devDependencies": {
+    "@web3sheet/typescript-config": "workspace:*",
+    "tsup": "^8.3.5"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9",
+    "yarn": "use pnpm",
+    "npm": "use pnpm"
+  }
+}
