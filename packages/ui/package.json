@@ -1,6 +1,11 @@
 {
   "name": "@web3sheet/ui",
   "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/web3sheet/web3sheet.git",
+    "directory": "packages/ui"
+  },
   "author": {
     "email": "aerilym@pm.me",
     "name": "Aerilym",
