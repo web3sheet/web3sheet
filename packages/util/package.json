@@ -1,6 +1,8 @@
 {
   "name": "@web3sheet/util",
+  "description": "A collection of utility functions for Web3Sheet",
   "version": "0.0.2",
+  "license": "GPL-3",
   "repository": {
     "type": "git",
     "url": "https://github.com/web3sheet/web3sheet.git",
@@ -35,5 +37,6 @@
     "pnpm": ">=9",
     "yarn": "use pnpm",
     "npm": "use pnpm"
-  }
+  },
+  "keywords": ["web3", "sheet", "eth" ,"wagmi", "ethereum", "dapps", "wallet"]
 }

@@ -1,6 +1,8 @@
 {
   "name": "@web3sheet/ui",
+  "description": "Web3 wallet sheet UI React components",
   "version": "0.0.2",
+  "license": "GPL-3",
   "repository": {
     "type": "git",
     "url": "https://github.com/web3sheet/web3sheet.git",
@@ -76,5 +78,6 @@
     "pnpm": ">=9",
     "yarn": "use pnpm",
     "npm": "use pnpm"
-  }
+  },
+  "keywords": ["web3", "sheet", "eth" ,"wagmi", "ethereum", "dapps", "wallet"]
 }
