@@ -4,16 +4,18 @@ import { type TokenDetails, useWallet } from '@web3sheet/core/hooks/useWallet'
 import { useUiLibrary } from '@web3sheet/core/providers/wallet-provider'
 import { formatBigIntTokenValue } from '@web3sheet/util/maths'
 import { collapseString } from '@web3sheet/util/string'
-import { type Dispatch, type SetStateAction, useMemo, useState } from 'react'
+import { type Dispatch, type ReactNode, type SetStateAction, useMemo, useState } from 'react';
 import type { Address } from 'viem'
 import { GenericWalletProviderButton } from '../GenericWalletProviderButton'
 import { ConnectedNetworkAvatar } from '../NetworkAvatar'
 import { ConnectedWalletAvatar } from '../WalletAvatar'
 import { isDynamicTokenRowProps, isTokenRowProps } from './WalletTab'
 import { TAB } from './index'
-import type { useBalance } from 'wagmi';
 
-export type BasicMainTabProps = {}
+export type BasicMainTabProps = {
+  connectedChildren?: ReactNode;
+  disconnectedChildren?: ReactNode;
+}
 
 type MainTabProps = BasicMainTabProps & {
   setTab: Dispatch<SetStateAction<TAB>>
@@ -49,7 +51,7 @@ function StaticTokenAmount({ token }: { token: TokenDetails }) {
   )
 }
 
-export function MainTab({ setTab }: MainTabProps) {
+export function MainTab({ setTab, connectedChildren, disconnectedChildren }: MainTabProps) {
   const UI = useUiLibrary()
   const {
     hasName,
@@ -168,6 +170,7 @@ export function MainTab({ setTab }: MainTabProps) {
           <UI.TabFullWidthButton onClick={() => setTab(TAB.NETWORKS)}>
             View Networks
           </UI.TabFullWidthButton>
+          {connectedChildren}
         </>
       ) : (
         <>
@@ -178,6 +181,7 @@ export function MainTab({ setTab }: MainTabProps) {
           {filteredProviders.map((provider) => (
             <GenericWalletProviderButton key={provider.info.uuid} provider={provider} />
           ))}
+          {disconnectedChildren}
         </>
       )}
     </>
