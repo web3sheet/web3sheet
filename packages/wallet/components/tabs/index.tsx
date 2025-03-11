@@ -9,11 +9,11 @@ import { SettingsTab, type SettingsTabConfig, type UniqueSettingsTabProps } from
 import { type UniqueWalletTabProps, WalletTab, type WalletTabConfig } from './WalletTab'
 
 export enum TAB {
-  MAIN = 0,
-  SETTINGS = 1,
-  NETWORKS = 2,
-  WALLET = 3,
-  EXPERIMENTAL = 4,
+  MAIN = 'main',
+  SETTINGS = 'settings',
+  NETWORKS = 'networks',
+  WALLET = 'wallet',
+  EXPERIMENTAL = 'experimental',
 }
 
 export type GenericTabDetails = {

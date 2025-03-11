@@ -1,7 +1,7 @@
 {
   "name": "@web3sheet/util",
   "description": "A collection of utility functions for Web3Sheet",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "license": "GPL-3",
   "repository": {
     "type": "git",

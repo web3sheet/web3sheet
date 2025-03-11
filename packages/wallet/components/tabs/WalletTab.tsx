@@ -51,6 +51,8 @@ function DynamicTokenRow({
   symbolOverride,
   symbolPrefix,
   children,
+  roundingDecimals,
+  hideIfZero
 }: DynamicTokenRowProps) {
   const { data } = useERC20Balance({
     chainId: network.id,
@@ -65,8 +67,11 @@ function DynamicTokenRow({
       balance={data?.value ?? 0n}
       decimals={data?.decimals ?? 0}
       symbol={`${symbolPrefix ?? ''}${symbolOverride ?? data?.symbol ?? ''}`}
-      children={children}
-    />
+      roundingDecimals={roundingDecimals}
+      hideIfZero={hideIfZero}
+    >
+      {children}
+    </TokenRow>
   )
 }
 

@@ -4,18 +4,28 @@ import { type TokenDetails, useWallet } from '@web3sheet/core/hooks/useWallet'
 import { useUiLibrary } from '@web3sheet/core/providers/wallet-provider'
 import { formatBigIntTokenValue } from '@web3sheet/util/maths'
 import { collapseString } from '@web3sheet/util/string'
-import { type Dispatch, type SetStateAction, useMemo, useState } from 'react'
+import { type Dispatch, type ReactNode, type SetStateAction, useMemo, useState } from 'react';
 import type { Address } from 'viem'
 import { GenericWalletProviderButton } from '../GenericWalletProviderButton'
 import { ConnectedNetworkAvatar } from '../NetworkAvatar'
 import { ConnectedWalletAvatar } from '../WalletAvatar'
 import { isDynamicTokenRowProps, isTokenRowProps } from './WalletTab'
 import { TAB } from './index'
-import type { useBalance } from 'wagmi';
 
-export type BasicMainTabProps = {}
+export type CustomTabButton = {
+  id: string;
+  label: string;
+}
 
-type MainTabProps = BasicMainTabProps & {
+export type MainTabConfig = {
+  connectedChildren?: ReactNode;
+  disconnectedChildren?: ReactNode;
+  hideWalletButton?: boolean;
+  hideNetworkButton?: boolean;
+  customButtons?: Array<CustomTabButton>;
+}
+
+type MainTabProps = MainTabConfig & {
   setTab: Dispatch<SetStateAction<TAB>>
 }
 
@@ -49,7 +59,7 @@ function StaticTokenAmount({ token }: { token: TokenDetails }) {
   )
 }
 
-export function MainTab({ setTab }: MainTabProps) {
+export function MainTab({ setTab, connectedChildren, disconnectedChildren, hideNetworkButton, hideWalletButton, customButtons }: MainTabProps) {
   const UI = useUiLibrary()
   const {
     hasName,
@@ -162,12 +172,22 @@ export function MainTab({ setTab }: MainTabProps) {
               {nativeBalance.symbol}
             </span>
           </div>
-          <UI.TabFullWidthButton onClick={() => setTab(TAB.WALLET)}>
-            View Wallet
-          </UI.TabFullWidthButton>
-          <UI.TabFullWidthButton onClick={() => setTab(TAB.NETWORKS)}>
-            View Networks
-          </UI.TabFullWidthButton>
+          {!hideWalletButton ? (
+            <UI.TabFullWidthButton onClick={() => setTab(TAB.WALLET)}>
+              View Wallet
+            </UI.TabFullWidthButton>
+          ) : null}
+          {!hideNetworkButton ? (
+            <UI.TabFullWidthButton onClick={() => setTab(TAB.NETWORKS)}>
+              View Networks
+            </UI.TabFullWidthButton>
+          ) : null}
+          {customButtons?.map(({ id, label }) => (
+            <UI.TabFullWidthButton key={id} onClick={() => setTab(id as unknown as TAB)}>
+              {label}
+            </UI.TabFullWidthButton>
+          ))}
+          {connectedChildren}
         </>
       ) : (
         <>
@@ -178,8 +198,9 @@ export function MainTab({ setTab }: MainTabProps) {
           {filteredProviders.map((provider) => (
             <GenericWalletProviderButton key={provider.info.uuid} provider={provider} />
           ))}
+          {disconnectedChildren}
         </>
       )}
     </>
-  )
+  );
 }
