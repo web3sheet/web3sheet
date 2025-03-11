@@ -18,7 +18,7 @@ export type InteractionConfig = {
 
 export type UserSheetConfig = {
   tabs: TabDetails[]
-  customTabs: GenericTabDetails[]
+  customTabs?: GenericTabDetails[]
   interaction?: InteractionConfig
   mainTabConfig?: MainTabConfig
 }
@@ -65,7 +65,7 @@ export function UserSheetComponent({
   }), [])
 
   const customTabs = useMemo(() =>
-    config.customTabs.reduce(
+    config.customTabs?.reduce(
     (acc, { id, tab }) => {
       acc[id] = tab(nonPrimaryTabProps)
       return acc
