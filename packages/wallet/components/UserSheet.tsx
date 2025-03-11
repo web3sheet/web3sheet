@@ -95,7 +95,7 @@ export function UserSheetComponent({
       }),
       ...custom,
     }
-  }, [config.tabs])
+  }, [mainTab, config.tabs, config.customTabs])
 
   const currentTab = useMemo(
     () => tabs[walletSheetDisabledViaFeatureFlag ? TAB.EXPERIMENTAL : tab] ?? mainTab,
