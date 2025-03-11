@@ -9,7 +9,7 @@ import {
 import { Web3WalletComponentLibrary } from '@web3sheet/ui/lib/library'
 import { type ReactNode, useEffect, useMemo, useState } from 'react'
 import { TAB, type TabDetails } from './tabs'
-import { MainTab } from './tabs/MainTab'
+import { type MainTabConfig, MainTab } from './tabs/MainTab';
 
 export type InteractionConfig = {
   disableKeyboardShortcuts?: boolean
@@ -19,6 +19,7 @@ export type InteractionConfig = {
 export type UserSheetConfig = {
   tabs: TabDetails[]
   interaction?: InteractionConfig
+  mainTabConfig?: MainTabConfig
 }
 
 export type NonPrimaryTabProps = {
@@ -56,7 +57,7 @@ export function UserSheetComponent({
   const [tab, setTab] = useState<TAB>(TAB.MAIN)
   const { open, setOpen } = useWalletSheet()
 
-  const mainTab = <MainTab setTab={setTab} />
+  const mainTab = <MainTab setTab={setTab} {...config.mainTabConfig} />
 
   const tabs: Record<TAB, ReactNode> = useMemo(() => {
     const enabledTabs = config.tabs.reduce(

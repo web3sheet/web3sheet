@@ -12,12 +12,20 @@ import { ConnectedWalletAvatar } from '../WalletAvatar'
 import { isDynamicTokenRowProps, isTokenRowProps } from './WalletTab'
 import { TAB } from './index'
 
-export type BasicMainTabProps = {
-  connectedChildren?: ReactNode;
-  disconnectedChildren?: ReactNode;
+export type CustomTabButton = {
+  id: string;
+  label: string;
 }
 
-type MainTabProps = BasicMainTabProps & {
+export type MainTabConfig = {
+  connectedChildren?: ReactNode;
+  disconnectedChildren?: ReactNode;
+  hideWalletButton?: boolean;
+  hideNetworkButton?: boolean;
+  customButtons?: Array<CustomTabButton>;
+}
+
+type MainTabProps = MainTabConfig & {
   setTab: Dispatch<SetStateAction<TAB>>
 }
 
@@ -51,7 +59,7 @@ function StaticTokenAmount({ token }: { token: TokenDetails }) {
   )
 }
 
-export function MainTab({ setTab, connectedChildren, disconnectedChildren }: MainTabProps) {
+export function MainTab({ setTab, connectedChildren, disconnectedChildren, hideNetworkButton, hideWalletButton, customButtons }: MainTabProps) {
   const UI = useUiLibrary()
   const {
     hasName,
@@ -164,12 +172,21 @@ export function MainTab({ setTab, connectedChildren, disconnectedChildren }: Mai
               {nativeBalance.symbol}
             </span>
           </div>
-          <UI.TabFullWidthButton onClick={() => setTab(TAB.WALLET)}>
-            View Wallet
-          </UI.TabFullWidthButton>
-          <UI.TabFullWidthButton onClick={() => setTab(TAB.NETWORKS)}>
-            View Networks
-          </UI.TabFullWidthButton>
+          {!hideWalletButton ? (
+            <UI.TabFullWidthButton onClick={() => setTab(TAB.WALLET)}>
+              View Wallet
+            </UI.TabFullWidthButton>
+          ) : null}
+          {!hideNetworkButton ? (
+            <UI.TabFullWidthButton onClick={() => setTab(TAB.NETWORKS)}>
+              View Networks
+            </UI.TabFullWidthButton>
+          ) : null}
+          {customButtons?.map(({ id, label }) => (
+            <UI.TabFullWidthButton key={id} onClick={() => setTab(id as unknown as TAB)}>
+              {label}
+            </UI.TabFullWidthButton>
+          ))}
           {connectedChildren}
         </>
       ) : (
@@ -185,5 +202,5 @@ export function MainTab({ setTab, connectedChildren, disconnectedChildren }: Mai
         </>
       )}
     </>
-  )
+  );
 }
