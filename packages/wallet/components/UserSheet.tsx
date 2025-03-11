@@ -18,6 +18,7 @@ export type InteractionConfig = {
 
 export type UserSheetConfig = {
   tabs: TabDetails[]
+  customTabs: TabDetails[]
   interaction?: InteractionConfig
   mainTabConfig?: MainTabConfig
 }
@@ -84,6 +85,7 @@ export function UserSheetComponent({
         handleBackButtonClick: () =>
           walletSheetDisabledViaFeatureFlag ? setOpen(false) : setTab(TAB.SETTINGS),
       }),
+      ...config.customTabs
     }
   }, [config.tabs])
 
