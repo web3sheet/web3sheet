@@ -8,7 +8,7 @@ import {
 } from '@web3sheet/core/providers/wallet-provider'
 import { Web3WalletComponentLibrary } from '@web3sheet/ui/lib/library'
 import { type ReactNode, useEffect, useMemo, useState } from 'react'
-import { TAB, type TabDetails } from './tabs'
+import { type GenericTabDetails, TAB, type TabDetails } from './tabs';
 import { type MainTabConfig, MainTab } from './tabs/MainTab';
 
 export type InteractionConfig = {
@@ -18,7 +18,7 @@ export type InteractionConfig = {
 
 export type UserSheetConfig = {
   tabs: TabDetails[]
-  customTabs: TabDetails[]
+  customTabs: GenericTabDetails[]
   interaction?: InteractionConfig
   mainTabConfig?: MainTabConfig
 }
@@ -73,6 +73,14 @@ export function UserSheetComponent({
       handleBackButtonClick: () => setTab(TAB.MAIN),
     }
 
+    const custom = config.customTabs.reduce(
+      (acc, { id, tab }) => {
+        acc[id] = tab(nonPrimaryTabProps)
+        return acc
+      },
+      {} as Record<string, ReactNode>,
+    )
+
     return {
       [TAB.MAIN]: mainTab,
       [TAB.WALLET]: enabledTabs[TAB.WALLET]?.(nonPrimaryTabProps),
@@ -85,7 +93,7 @@ export function UserSheetComponent({
         handleBackButtonClick: () =>
           walletSheetDisabledViaFeatureFlag ? setOpen(false) : setTab(TAB.SETTINGS),
       }),
-      ...config.customTabs
+      ...custom,
     }
   }, [config.tabs])
 
