@@ -152,6 +152,70 @@ importers:
         specifier: ^3.4.3
         version: 3.4.15(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
 
+  packages/appkit:
+    dependencies:
+      '@hookform/resolvers':
+        specifier: ^3.9.1
+        version: 3.9.1(react-hook-form@7.53.2(react@19.0.0-rc-66855b96-20241106))
+      '@web3sheet/core':
+        specifier: workspace:*
+        version: link:../core
+      '@web3sheet/ui':
+        specifier: workspace:*
+        version: link:../ui
+      '@web3sheet/util':
+        specifier: workspace:*
+        version: link:../util
+      lucide-react:
+        specifier: ^0.376.0
+        version: 0.376.0(react@19.0.0-rc-66855b96-20241106)
+      next:
+        specifier: 15.0.4
+        version: 15.0.4(@babel/core@7.24.6)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
+      react-hook-form:
+        specifier: ^7.53.2
+        version: 7.53.2(react@19.0.0-rc-66855b96-20241106)
+      tailwind-merge:
+        specifier: ^2.5.5
+        version: 2.5.5
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.15(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))
+      viem:
+        specifier: 2.21.54
+        version: 2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8)
+      wagmi:
+        specifier: 2.13.5
+        version: 2.13.5(@react-native-async-storage/async-storage@1.23.1)(@tanstack/query-core@5.61.5)(@tanstack/react-query@5.61.5(react@19.0.0-rc-66855b96-20241106))(bufferutil@4.0.8)(esbuild@0.24.0)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@types/react':
+        specifier: npm:types-react@19.0.0-rc.1
+        version: types-react@19.0.0-rc.1
+      '@types/react-dom':
+        specifier: npm:types-react-dom@19.0.0-rc.1
+        version: types-react-dom@19.0.0-rc.1
+      '@web3sheet/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.49
+      react:
+        specifier: 19.0.0-rc-66855b96-20241106
+        version: 19.0.0-rc-66855b96-20241106
+      tailwindcss:
+        specifier: ^3.4.15
+        version: 3.4.15(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
+      tailwindcss-selection-variant:
+        specifier: ^0.1.0
+        version: 0.1.0
+      tsup:
+        specifier: ^8.3.5
+        version: 8.3.5(jiti@1.21.6)(postcss@8.4.49)(tsx@4.10.5)(typescript@5.4.5)(yaml@2.4.2)
+
   packages/core:
     dependencies:
       '@tanstack/react-query':
@@ -170,8 +234,8 @@ importers:
         specifier: 19.0.0-rc-66855b96-20241106
         version: 19.0.0-rc-66855b96-20241106
       usepref:
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^1.0.1
+        version: 1.0.1
       viem:
         specifier: 2.21.54
         version: 2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8)
@@ -4568,6 +4632,10 @@ packages:
       '@types/react':
         optional: true
 
+  react@19.0.0:
+    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
+    engines: {node: '>=0.10.0'}
+
   react@19.0.0-rc-66855b96-20241106:
     resolution: {integrity: sha512-klH7xkT71SxRCx4hb1hly5FJB21Hz0ACyxbXYAECEqssUjtJeFUAaI2U1DgJAzkGEnvEm3DkxuBchMC/9K4ipg==}
     engines: {node: '>=0.10.0'}
@@ -5286,8 +5354,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  usepref@0.0.1:
-    resolution: {integrity: sha512-DjBMA2L8BozEh4hEQDS04w4qjrXqLggEInWk6u+ZANQj9VPDsdfLHtV79dJMhtE9Han6GrRHJufw6EiT4EzaAw==}
+  usepref@1.0.1:
+    resolution: {integrity: sha512-WNackuX89bGiIzN3N1UIh5sZ6qjT6TfSObsHSXw67S3eESa7cc12mf3CFNq4ElAkv1eRjj23J41mzBnhCgvvBg==}
 
   utf-8-validate@5.0.10:
     resolution: {integrity: sha512-Z6czzLq4u8fPOyx7TU6X3dvUZVvoJmxSQ+IcrlmagKhilxlhZgxPK6C5Jqbkw1IDUmFTM+cz9QDnnLTwDz/2gQ==}
@@ -10406,6 +10474,8 @@ snapshots:
     optionalDependencies:
       '@types/react': types-react@19.0.0-rc.1
 
+  react@19.0.0: {}
+
   react@19.0.0-rc-66855b96-20241106: {}
 
   read-cache@1.0.0:
@@ -11156,9 +11226,9 @@ snapshots:
     dependencies:
       react: 19.0.0-rc-66855b96-20241106
 
-  usepref@0.0.1:
+  usepref@1.0.1:
     dependencies:
-      react: 19.0.0-rc-66855b96-20241106
+      react: 19.0.0
 
   utf-8-validate@5.0.10:
     dependencies:
