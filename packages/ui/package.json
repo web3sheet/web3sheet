@@ -1,7 +1,7 @@
 {
   "name": "@web3sheet/ui",
   "description": "Web3 wallet sheet UI React components",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "license": "GPL-3",
   "repository": {
     "type": "git",
@@ -15,7 +15,6 @@
   },
   "exports": {
     ".": "./dist/index.js",
-    "./fonts": "./fonts/fonts.ts",
     "./styles": "./dist/index.css",
     "./ui/*": "./dist/components/ui/*.js",
     "./components/*": "./dist/components/*.js",
@@ -26,7 +25,9 @@
     "./postcss": "./postcss.config.js"
   },
   "sideEffects": false,
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -34,7 +35,9 @@
     "check-types": "tsc --noEmit",
     "transpile": "tsup --config tsup.config.ts",
     "build": "rm -rf dist && pnpm transpile",
-    "ui:add": "npx shadcn-ui@latest add"
+    "ui:add": "npx shadcn-ui@latest add",
+    "release": "pnpm build && pnpm publish --access public",
+    "release:no-git": "pnpm build && pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
     "@types/react": "npm:types-react@19.0.0-rc.1",
@@ -47,9 +50,6 @@
     "tsup": "^8.3.5"
   },
   "dependencies": {
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "@web3sheet/util": "workspace:*",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-checkbox": "^1.1.2",
@@ -61,12 +61,15 @@
     "@radix-ui/react-switch": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.4",
     "@uidotdev/usehooks": "^2.4.1",
+    "@web3sheet/util": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
     "lucide-react": "^0.376.0",
     "next": "15.0.4",
     "next-themes": "^0.4.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-hook-form": "^7.53.2",
     "sonner": "^1.7.0",
     "tailwind-merge": "^2.5.5",
@@ -79,5 +82,13 @@
     "yarn": "use pnpm",
     "npm": "use pnpm"
   },
-  "keywords": ["web3", "sheet", "eth" ,"wagmi", "ethereum", "dapps", "wallet"]
+  "keywords": [
+    "web3",
+    "sheet",
+    "eth",
+    "wagmi",
+    "ethereum",
+    "dapps",
+    "wallet"
+  ]
 }

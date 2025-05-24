@@ -35,22 +35,24 @@ export type ChainDetails = {
 
 export type TokenDetails = {
   name: string
+  address?: string;
   iconSrc: string
   network: TokenNetwork
   balance: bigint
   symbol: string
+  symbolPrefix?: string
   decimals: number
   children?: ReactNode
   roundingDecimals?: number
   hideIfZero?: boolean
+  showAddTokenButton?: boolean
 }
 
 export type DynamicTokenRowProps = Pick<
   TokenDetails,
-  'name' | 'iconSrc' | 'network' | 'children' | 'roundingDecimals' | 'hideIfZero'
+  'name' | 'iconSrc' | 'network' | 'children' | 'roundingDecimals' | 'hideIfZero' | 'showAddTokenButton' | 'symbolPrefix'
 > & {
   symbolOverride?: string
-  symbolPrefix?: string
   tokenAddress: Address
 }
 
@@ -113,6 +115,8 @@ type UseWalletType = {
   chains: ReturnType<typeof useChains>
   /** Switch the chain the wallet is connected to. */
   switchChain: ReturnType<typeof useSwitchChain>['switchChain']
+  /** Switch the chain the wallet is connected to. */
+  switchChainAsync: ReturnType<typeof useSwitchChain>['switchChainAsync']
   /** The status of the switch chain mutation */
   switchChainStatus: ReturnType<typeof useSwitchChain>['status']
   /** If there is an error in the switch chain state */
@@ -151,6 +155,7 @@ export function useWallet(): UseWalletType {
   const chains = useChains({ config })
   const {
     switchChain,
+    switchChainAsync,
     status: switchChainStatus,
     isError: switchChainIsError,
     error: switchChainError,
@@ -240,6 +245,7 @@ export function useWallet(): UseWalletType {
     chainDetails,
     chains,
     switchChain,
+    switchChainAsync,
     switchChainStatus,
     switchChainIsError,
     switchChainError,

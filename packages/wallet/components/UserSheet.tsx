@@ -131,7 +131,7 @@ export function UserSheetComponent({
   }, [])
 
   return (
-    <UI.Sheet open={open}>
+    <UI.Sheet open={open} modal={false}>
       <UI.SheetContent closeSheet={() => setOpen(false)} className={className}>
         {currentTab}
       </UI.SheetContent>

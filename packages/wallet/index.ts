@@ -1,4 +1,5 @@
 export * from './components/UserSheet'
 export { ConnectedWalletAvatar } from './components/WalletAvatar'
+export { AddTokenButton } from './components/AddTokenButton'
 export { ConnectedNetworkAvatar, NetworkAvatar } from './components/NetworkAvatar'
 export * from './components/tabs/index'

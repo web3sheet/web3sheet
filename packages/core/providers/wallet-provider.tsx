@@ -37,21 +37,22 @@ export type WalletProviderProps = {
   config: Web3WalletConfig
   wagmiCookie?: WagmiCookie
   wagmiInitialState?: State
+  settingsPreferenceStorage?: PreferenceStorage
 }
-
-const settingsPreferences = new PreferenceStorage({
-  key: 'w3s_settings',
-})
 
 export function WalletProvider({
   config,
   wagmiCookie,
   wagmiInitialState,
+  settingsPreferenceStorage,
   children,
 }: WalletProviderProps & { children: ReactNode }) {
   const [ethereumProvider, setEthereumProvider] = useState<EthereumProvider | null>(null)
   const [userSheetOpen, setUserSheetOpen] = useState<boolean>(false)
   const [uiLibrary, setUiLibrary] = useState<Web3WalletComponentLibrary | null>(null)
+  const settingsPreferences = useMemo(() => settingsPreferenceStorage ?? new PreferenceStorage({
+    key: 'w3s_settings',
+  }), [settingsPreferenceStorage])
 
   const {
     walletConnectConfig,

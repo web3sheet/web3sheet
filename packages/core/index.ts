@@ -1,5 +1,7 @@
 export * from './hooks/useWallet'
 export * from './hooks/useERC20Balance'
+export * from './hooks/useBlockNumber'
+export * from './hooks/useAddToken'
 export * from './hooks/useEns'
 export * from './hooks/useSyncProviders'
 export * from './hooks/useConnectToConnector'
