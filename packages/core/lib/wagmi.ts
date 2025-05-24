@@ -9,17 +9,17 @@ import {
   type Config as WagmiConfig,
   cookieStorage,
   createConfig,
-  createStorage,
-} from 'wagmi'
-import type { MetaMaskConfig } from './config'
+  createStorage, type CreateConfigParameters,
+} from 'wagmi';
+import type { MetaMaskConfig } from './config';
 import type { WalletConnectConfig } from './eth'
 
-export type CreateWeb3WalletWagmiConfigParams = {
-  chains: WagmiConfig['chains']
+export type SupportedWagmiConfig = Pick<CreateConfigParameters, 'chains' | 'transports' | 'ssr'>
+
+export type CreateWeb3WalletWagmiConfigParams = SupportedWagmiConfig & {
   overrideConnectors?: CreateConnectorFn[]
   additionalConnectors?: CreateConnectorFn[]
   overrideStorage?: Storage
-  ssr?: boolean
 }
 
 export type Web3WalletWagmiConfig = WagmiConfig
@@ -32,6 +32,7 @@ export const createWeb3WalletWagmiConfig = ({
     overrideConnectors,
     overrideStorage,
     additionalConnectors = [],
+    transports,
     ssr = true,
   },
 }: {
@@ -49,13 +50,17 @@ export const createWeb3WalletWagmiConfig = ({
     chains,
     ssr,
     connectors: overrideConnectors ?? connectors,
-    client({ chain }) {
-      return createClient({ chain, transport: http() })
-    },
+    ...(transports
+      ? { transports }
+      : {
+          client({ chain }) {
+            return createClient({ chain, transport: http() });
+          },
+        }),
     storage:
       overrideStorage ??
       createStorage({
         storage: cookieStorage,
       }),
-  })
+  });
 }

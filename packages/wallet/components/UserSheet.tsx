@@ -7,7 +7,7 @@ import {
   useWalletSheet,
 } from '@web3sheet/core/providers/wallet-provider'
 import { Web3WalletComponentLibrary } from '@web3sheet/ui/lib/library'
-import { type ReactNode, useEffect, useMemo, useState } from 'react'
+import { type ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { type GenericTabDetails, TAB, type TabDetails } from './tabs';
 import { type MainTabConfig, MainTab } from './tabs/MainTab';
 
@@ -18,7 +18,7 @@ export type InteractionConfig = {
 
 export type UserSheetConfig = {
   tabs: TabDetails[]
-  customTabs: GenericTabDetails[]
+  customTabs?: GenericTabDetails[]
   interaction?: InteractionConfig
   mainTabConfig?: MainTabConfig
 }
@@ -60,27 +60,28 @@ export function UserSheetComponent({
 
   const mainTab = <MainTab setTab={setTab} {...config.mainTabConfig} />
 
+  const nonPrimaryTabProps = useMemo(() => ({
+    handleBackButtonClick: () => setTab(TAB.MAIN),
+  }), [])
+
+  const customTabs = useMemo(() =>
+    config.customTabs?.reduce(
+    (acc, { id, tab }) => {
+      acc[id] = tab(nonPrimaryTabProps)
+      return acc
+    },
+    {} as Record<string, ReactNode>,
+  ), [config.customTabs, nonPrimaryTabProps])
+
+  const enabledTabs = useMemo(() => config.tabs.reduce(
+    (acc, { id, tab }) => {
+      acc[id] = tab
+      return acc
+    },
+    {} as Record<TAB, (props: any) => ReactNode>,
+  ), [config.tabs])
+
   const tabs: Record<TAB, ReactNode> = useMemo(() => {
-    const enabledTabs = config.tabs.reduce(
-      (acc, { id, tab }) => {
-        acc[id] = tab
-        return acc
-      },
-      {} as Record<TAB, (props: any) => ReactNode>,
-    )
-
-    const nonPrimaryTabProps = {
-      handleBackButtonClick: () => setTab(TAB.MAIN),
-    }
-
-    const custom = config.customTabs.reduce(
-      (acc, { id, tab }) => {
-        acc[id] = tab(nonPrimaryTabProps)
-        return acc
-      },
-      {} as Record<string, ReactNode>,
-    )
-
     return {
       [TAB.MAIN]: mainTab,
       [TAB.WALLET]: enabledTabs[TAB.WALLET]?.(nonPrimaryTabProps),
@@ -93,13 +94,13 @@ export function UserSheetComponent({
         handleBackButtonClick: () =>
           walletSheetDisabledViaFeatureFlag ? setOpen(false) : setTab(TAB.SETTINGS),
       }),
-      ...custom,
+      ...customTabs,
     }
-  }, [config.tabs])
+  }, [mainTab, customTabs, nonPrimaryTabProps, enabledTabs, walletSheetDisabledViaFeatureFlag])
 
   const currentTab = useMemo(
     () => tabs[walletSheetDisabledViaFeatureFlag ? TAB.EXPERIMENTAL : tab] ?? mainTab,
-    [tab, walletSheetDisabledViaFeatureFlag],
+    [tab, walletSheetDisabledViaFeatureFlag, mainTab, tabs],
   )
 
   useEffect(() => {
@@ -130,7 +131,7 @@ export function UserSheetComponent({
   }, [])
 
   return (
-    <UI.Sheet open={open}>
+    <UI.Sheet open={open} modal={false}>
       <UI.SheetContent closeSheet={() => setOpen(false)} className={className}>
         {currentTab}
       </UI.SheetContent>

@@ -1,7 +1,7 @@
 {
   "name": "@web3sheet/wallet",
   "description": "A web3 wallet interaction and sheet library for React apps",
-  "version": "0.1.4",
+  "version": "0.1.35",
   "license": "GPL-3",
   "repository": {
     "type": "git",
@@ -25,13 +25,17 @@
     "./providers/*": "./providers/*.tsx"
   },
   "sideEffects": false,
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "check-types": "tsc --noEmit",
     "transpile": "tsup --config tsup.config.ts",
-    "build": "rm -rf dist && pnpm transpile"
+    "build": "rm -rf dist && pnpm transpile",
+    "release": "pnpm build && pnpm publish --access public",
+    "release:no-git": "pnpm build && pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
     "@types/react": "^18.3.1",
@@ -46,8 +50,8 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@web3sheet/core": "workspace:*",
-    "@web3sheet/util": "workspace:*",
     "@web3sheet/ui": "workspace:*",
+    "@web3sheet/util": "workspace:*",
     "lucide-react": "^0.376.0",
     "next": "15.0.4",
     "react-hook-form": "^7.53.2",
@@ -63,5 +67,13 @@
     "yarn": "use pnpm",
     "npm": "use pnpm"
   },
-  "keywords": ["web3", "sheet", "eth" ,"wagmi", "ethereum", "dapps", "wallet"]
+  "keywords": [
+    "web3",
+    "sheet",
+    "eth",
+    "wagmi",
+    "ethereum",
+    "dapps",
+    "wallet"
+  ]
 }

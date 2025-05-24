@@ -1,22 +1,32 @@
-import { useERC20Balance, useWallet } from '@web3sheet/core'
-import type { DynamicTokenRowProps, TokenDetails } from '@web3sheet/core/hooks/useWallet'
-import { useUiLibrary } from '@web3sheet/core/providers/wallet-provider'
-import { formatBigIntTokenValue } from '@web3sheet/util/maths'
-import { cn } from '@web3sheet/ui/lib/utils'
-import { Avatar, AvatarImage } from '@web3sheet/ui/ui/avatar'
-import type { NonPrimaryTabProps } from '../UserSheet'
+import { useERC20Balance, useSettingsPreferences, useWallet } from '@web3sheet/core';
+import type { DynamicTokenRowProps, TokenDetails } from '@web3sheet/core/hooks/useWallet';
+import { useUiLibrary } from '@web3sheet/core/providers/wallet-provider';
+import { formatBigIntTokenValue } from '@web3sheet/util/maths';
+import { cn } from '@web3sheet/ui/lib/utils';
+import { Avatar, AvatarImage } from '@web3sheet/ui/ui/avatar';
+import type { NonPrimaryTabProps } from '../UserSheet';
+import {
+  autoRefreshWalletBalanceIntervalSecondsDefaultValue,
+  autoRefreshWalletBalanceIntervalSecondsKey,
+  autoRefreshWalletBalanceKey,
+} from './settings/wallet';
+import { AddTokenButton } from '../AddTokenButton';
 
 function TokenRow({
   name,
+  address,
   iconSrc,
   network,
   balance,
   decimals,
   symbol,
+  symbolPrefix,
   children,
   roundingDecimals,
   hideIfZero,
+  showAddTokenButton,
 }: TokenDetails) {
+  if (showAddTokenButton && !address) throw new Error('Address required for showAddTokenButton');
   return hideIfZero && balance === 0n ? null : (
     <div className="flex flex-row items-center justify-between gap-2 align-middle">
       <div className="flex flex-row items-center gap-2 align-middle">
@@ -26,6 +36,11 @@ function TokenRow({
         <div className="flex flex-col align-middle">
           <span className="inline-flex items-center gap-2 align-middle">
             {name}
+            {showAddTokenButton && address ? (
+              <AddTokenButton
+                token={{ symbol, address, decimals, icon: iconSrc, chainId: network.id }}
+              />
+            ) : null}
             {children}
           </span>
           <span className="inline-flex gap-1 text-xs">
@@ -37,10 +52,10 @@ function TokenRow({
         </div>
       </div>
       <span className="text-lg">
-        {balance ? formatBigIntTokenValue(balance, decimals, roundingDecimals) : 0} {symbol}
+        {balance ? formatBigIntTokenValue(balance, decimals, roundingDecimals) : 0} {`${symbolPrefix ?? ''}${symbol ?? ''}`}
       </span>
     </div>
-  )
+  );
 }
 
 function DynamicTokenRow({
@@ -52,53 +67,67 @@ function DynamicTokenRow({
   symbolPrefix,
   children,
   roundingDecimals,
-  hideIfZero
+  hideIfZero,
+  showAddTokenButton,
 }: DynamicTokenRowProps) {
+  const { getItem } = useSettingsPreferences();
+  const autoRefresh = getItem<boolean>(autoRefreshWalletBalanceKey);
+  const autoRefreshInterval = getItem<string>(autoRefreshWalletBalanceIntervalSecondsKey);
   const { data } = useERC20Balance({
     chainId: network.id,
     tokenAddress,
-  })
+    query: {
+      refetchInterval: autoRefresh
+        ? Number.parseFloat(
+            autoRefreshInterval ?? autoRefreshWalletBalanceIntervalSecondsDefaultValue
+          ) * 1000
+        : undefined,
+    },
+  });
 
   return (
     <TokenRow
       name={name}
+      address={tokenAddress}
       iconSrc={iconSrc}
       network={network}
       balance={data?.value ?? 0n}
       decimals={data?.decimals ?? 0}
-      symbol={`${symbolPrefix ?? ''}${symbolOverride ?? data?.symbol ?? ''}`}
+      symbol={symbolOverride ?? data?.symbol ?? ''}
+      symbolPrefix={symbolPrefix}
       roundingDecimals={roundingDecimals}
       hideIfZero={hideIfZero}
+      showAddTokenButton={showAddTokenButton}
     >
       {children}
     </TokenRow>
-  )
+  );
 }
 
 export type WalletTabConfig = {
-  roundingDecimals?: number
-}
+  roundingDecimals?: number;
+};
 
-export type UniqueWalletTabProps = NonPrimaryTabProps
+export type UniqueWalletTabProps = NonPrimaryTabProps;
 
-type WalletTabProps = UniqueWalletTabProps & WalletTabConfig
+type WalletTabProps = UniqueWalletTabProps & WalletTabConfig;
 
 export const isTokenRowProps = (
-  token: TokenDetails | DynamicTokenRowProps,
-): token is TokenDetails => 'balance' in token && 'decimals' in token && 'symbol' in token
+  token: TokenDetails | DynamicTokenRowProps
+): token is TokenDetails => 'balance' in token && 'decimals' in token && 'symbol' in token;
 
 export const isDynamicTokenRowProps = (
-  token: TokenDetails | DynamicTokenRowProps,
+  token: TokenDetails | DynamicTokenRowProps
 ): token is DynamicTokenRowProps =>
-  !!('tokenAddress' in token && 'network' in token && token.tokenAddress && token.network)
+  !!('tokenAddress' in token && 'network' in token && token.tokenAddress && token.network);
 
 export function WalletTab({
   title = 'Wallet',
   handleBackButtonClick,
   roundingDecimals,
 }: WalletTabProps) {
-  const UI = useUiLibrary()
-  const { tokens } = useWallet()
+  const UI = useUiLibrary();
+  const { tokens } = useWallet();
   return (
     <>
       <UI.SheetHeader className="flex flex-row items-center gap-2 align-middle">
@@ -113,7 +142,7 @@ export function WalletTab({
               {...token}
               roundingDecimals={token.roundingDecimals ?? roundingDecimals}
             />
-          )
+          );
         }
 
         if (isTokenRowProps(token)) {
@@ -123,11 +152,11 @@ export function WalletTab({
               {...token}
               roundingDecimals={token.roundingDecimals ?? roundingDecimals}
             />
-          )
+          );
         }
 
-        throw new Error('Invalid token row props')
+        throw new Error('Invalid token row props');
       })}
     </>
-  )
+  );
 }
