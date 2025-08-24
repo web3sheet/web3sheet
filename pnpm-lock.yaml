@@ -69,9 +69,6 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.5.0
         version: 3.9.1(react-hook-form@7.53.2(react@19.0.0-rc-66855b96-20241106))
-      '@tanstack/react-query':
-        specifier: 5.51.1
-        version: 5.51.1(react@19.0.0-rc-66855b96-20241106)
       '@web3sheet/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -123,9 +120,12 @@ importers:
       sharp:
         specifier: 0.32.6
         version: 0.32.6
+      viem:
+        specifier: 2.21.54
+        version: 2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8)
       wagmi:
         specifier: 2.13.5
-        version: 2.13.5(@react-native-async-storage/async-storage@1.23.1)(@tanstack/query-core@5.61.5)(@tanstack/react-query@5.51.1(react@19.0.0-rc-66855b96-20241106))(bufferutil@4.0.8)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
+        version: 2.13.5(@react-native-async-storage/async-storage@1.23.1)(@tanstack/query-core@5.61.5)(@tanstack/react-query@5.61.5(react@19.0.0-rc-66855b96-20241106))(bufferutil@4.0.8)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -151,70 +151,6 @@ importers:
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.15(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
-
-  packages/appkit:
-    dependencies:
-      '@hookform/resolvers':
-        specifier: ^3.9.1
-        version: 3.9.1(react-hook-form@7.53.2(react@19.0.0-rc-66855b96-20241106))
-      '@web3sheet/core':
-        specifier: workspace:*
-        version: link:../core
-      '@web3sheet/ui':
-        specifier: workspace:*
-        version: link:../ui
-      '@web3sheet/util':
-        specifier: workspace:*
-        version: link:../util
-      lucide-react:
-        specifier: ^0.376.0
-        version: 0.376.0(react@19.0.0-rc-66855b96-20241106)
-      next:
-        specifier: 15.0.4
-        version: 15.0.4(@babel/core@7.24.6)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
-      react-hook-form:
-        specifier: ^7.53.2
-        version: 7.53.2(react@19.0.0-rc-66855b96-20241106)
-      tailwind-merge:
-        specifier: ^2.5.5
-        version: 2.5.5
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.15(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))
-      viem:
-        specifier: 2.21.54
-        version: 2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8)
-      wagmi:
-        specifier: 2.13.5
-        version: 2.13.5(@react-native-async-storage/async-storage@1.23.1)(@tanstack/query-core@5.61.5)(@tanstack/react-query@5.61.5(react@19.0.0-rc-66855b96-20241106))(bufferutil@4.0.8)(esbuild@0.24.0)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
-    devDependencies:
-      '@types/react':
-        specifier: npm:types-react@19.0.0-rc.1
-        version: types-react@19.0.0-rc.1
-      '@types/react-dom':
-        specifier: npm:types-react-dom@19.0.0-rc.1
-        version: types-react-dom@19.0.0-rc.1
-      '@web3sheet/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      postcss:
-        specifier: ^8.4.38
-        version: 8.4.49
-      react:
-        specifier: 19.0.0-rc-66855b96-20241106
-        version: 19.0.0-rc-66855b96-20241106
-      tailwindcss:
-        specifier: ^3.4.15
-        version: 3.4.15(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
-      tailwindcss-selection-variant:
-        specifier: ^0.1.0
-        version: 0.1.0
-      tsup:
-        specifier: ^8.3.5
-        version: 8.3.5(jiti@1.21.6)(postcss@8.4.49)(tsx@4.10.5)(typescript@5.4.5)(yaml@2.4.2)
 
   packages/core:
     dependencies:
@@ -11331,10 +11267,10 @@ snapshots:
       - webpack-dev-server
       - zod
 
-  wagmi@2.13.5(@react-native-async-storage/async-storage@1.23.1)(@tanstack/query-core@5.61.5)(@tanstack/react-query@5.51.1(react@19.0.0-rc-66855b96-20241106))(bufferutil@4.0.8)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8):
+  wagmi@2.13.5(@react-native-async-storage/async-storage@1.23.1)(@tanstack/query-core@5.61.5)(@tanstack/react-query@5.61.5(react@19.0.0-rc-66855b96-20241106))(bufferutil@4.0.8)(esbuild@0.24.0)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8):
     dependencies:
-      '@tanstack/react-query': 5.51.1(react@19.0.0-rc-66855b96-20241106)
-      '@wagmi/connectors': 5.5.3(@react-native-async-storage/async-storage@1.23.1)(@wagmi/core@2.15.2(@tanstack/query-core@5.61.5)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(use-sync-external-store@1.2.0(react@19.0.0-rc-66855b96-20241106))(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
+      '@tanstack/react-query': 5.61.5(react@19.0.0-rc-66855b96-20241106)
+      '@wagmi/connectors': 5.5.3(@react-native-async-storage/async-storage@1.23.1)(@wagmi/core@2.15.2(@tanstack/query-core@5.61.5)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(use-sync-external-store@1.2.0(react@19.0.0-rc-66855b96-20241106))(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(esbuild@0.24.0)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
       '@wagmi/core': 2.15.2(@tanstack/query-core@5.61.5)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(use-sync-external-store@1.2.0(react@19.0.0-rc-66855b96-20241106))(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))
       react: 19.0.0-rc-66855b96-20241106
       use-sync-external-store: 1.2.0(react@19.0.0-rc-66855b96-20241106)
@@ -11371,10 +11307,10 @@ snapshots:
       - webpack-dev-server
       - zod
 
-  wagmi@2.13.5(@react-native-async-storage/async-storage@1.23.1)(@tanstack/query-core@5.61.5)(@tanstack/react-query@5.61.5(react@19.0.0-rc-66855b96-20241106))(bufferutil@4.0.8)(esbuild@0.24.0)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8):
+  wagmi@2.13.5(@react-native-async-storage/async-storage@1.23.1)(@tanstack/query-core@5.61.5)(@tanstack/react-query@5.61.5(react@19.0.0-rc-66855b96-20241106))(bufferutil@4.0.8)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8):
     dependencies:
       '@tanstack/react-query': 5.61.5(react@19.0.0-rc-66855b96-20241106)
-      '@wagmi/connectors': 5.5.3(@react-native-async-storage/async-storage@1.23.1)(@wagmi/core@2.15.2(@tanstack/query-core@5.61.5)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(use-sync-external-store@1.2.0(react@19.0.0-rc-66855b96-20241106))(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(esbuild@0.24.0)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
+      '@wagmi/connectors': 5.5.3(@react-native-async-storage/async-storage@1.23.1)(@wagmi/core@2.15.2(@tanstack/query-core@5.61.5)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(use-sync-external-store@1.2.0(react@19.0.0-rc-66855b96-20241106))(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
       '@wagmi/core': 2.15.2(@tanstack/query-core@5.61.5)(react@19.0.0-rc-66855b96-20241106)(types-react@19.0.0-rc.1)(typescript@5.4.5)(use-sync-external-store@1.2.0(react@19.0.0-rc-66855b96-20241106))(viem@2.21.54(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)(zod@3.23.8))
       react: 19.0.0-rc-66855b96-20241106
       use-sync-external-store: 1.2.0(react@19.0.0-rc-66855b96-20241106)
