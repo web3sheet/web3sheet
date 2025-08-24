@@ -1,4 +1,4 @@
-import type { metaMask } from '@wagmi/connectors'
+import type { metaMask, safe } from '@wagmi/connectors'
 import type { Web3WalletComponentLibrary } from '@web3sheet/ui/lib/library'
 import type { Config as WagmiConfig } from 'wagmi'
 import type { DynamicTokenRowProps, TokenDetails } from '../hooks/useWallet'

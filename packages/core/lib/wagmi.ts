@@ -1,6 +1,6 @@
 'use client'
 
-import { coinbaseWallet, metaMask, walletConnect } from '@wagmi/connectors'
+import { coinbaseWallet, metaMask, walletConnect, safe } from '@wagmi/connectors'
 import { createClient } from 'viem'
 import {
   http,
@@ -40,11 +40,10 @@ export const createWeb3WalletWagmiConfig = ({
   metaMaskConfig?: MetaMaskConfig
   wagmiConfig: CreateWeb3WalletWagmiConfigParams
 }): Web3WalletWagmiConfig => {
-  const connectors: CreateConnectorFn[] = [coinbaseWallet()]
+  const connectors: CreateConnectorFn[] = [coinbaseWallet(), ...additionalConnectors]
 
   if (metaMaskConfig) connectors.push(metaMask(metaMaskConfig))
   if (walletConnectConfig) connectors.push(walletConnect(walletConnectConfig))
-  connectors.concat(additionalConnectors)
 
   return createConfig({
     chains,

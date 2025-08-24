@@ -11,15 +11,19 @@ type UseEnsType = {
   ensAvatar?: string | null
 }
 
-export function useEns({
-  address,
-  enabled,
-  config,
-}: {
+export type UseEnsProps = {
   address?: Address
   enabled: boolean
   config?: ReturnType<typeof useConfig>
-}): UseEnsType {
+  query?: Parameters<typeof useEnsName>[]
+  disableAvatarFetch?: boolean
+}
+
+  export function useEns({
+  address,
+  enabled,
+  config,
+}: UseEnsProps ): UseEnsType {
   const wagmiConfig = useConfig({config})
 
   const ensConfig = useMemo(() => {
