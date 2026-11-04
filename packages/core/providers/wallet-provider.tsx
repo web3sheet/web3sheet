@@ -50,9 +50,14 @@ export function WalletProvider({
   const [ethereumProvider, setEthereumProvider] = useState<EthereumProvider | null>(null)
   const [userSheetOpen, setUserSheetOpen] = useState<boolean>(false)
   const [uiLibrary, setUiLibrary] = useState<Web3WalletComponentLibrary | null>(null)
-  const settingsPreferences = useMemo(() => settingsPreferenceStorage ?? new PreferenceStorage({
-    key: 'w3s_settings',
-  }), [settingsPreferenceStorage])
+  const settingsPreferences = useMemo(
+    () =>
+      settingsPreferenceStorage ??
+      new PreferenceStorage({
+        key: 'w3s_settings',
+      }),
+    [settingsPreferenceStorage],
+  )
 
   const {
     walletConnectConfig,
@@ -95,7 +100,6 @@ export function WalletProvider({
         }
         setEthereumProvider(provider)
       })
-
     }
   }, [ethereumProvider, chainIds, walletConnectConfig])
 

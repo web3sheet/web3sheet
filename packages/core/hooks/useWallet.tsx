@@ -35,7 +35,7 @@ export type ChainDetails = {
 
 export type TokenDetails = {
   name: string
-  address?: string;
+  address?: string
   iconSrc: string
   network: TokenNetwork
   balance: bigint
@@ -50,7 +50,14 @@ export type TokenDetails = {
 
 export type DynamicTokenRowProps = Pick<
   TokenDetails,
-  'name' | 'iconSrc' | 'network' | 'children' | 'roundingDecimals' | 'hideIfZero' | 'showAddTokenButton' | 'symbolPrefix'
+  | 'name'
+  | 'iconSrc'
+  | 'network'
+  | 'children'
+  | 'roundingDecimals'
+  | 'hideIfZero'
+  | 'showAddTokenButton'
+  | 'symbolPrefix'
 > & {
   symbolOverride?: string
   tokenAddress: Address

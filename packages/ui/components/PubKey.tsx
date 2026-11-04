@@ -1,6 +1,5 @@
 'use client'
 
-// @ts-expect-error -- Workaround to get collapseString from @web3sheet/util
 import { collapseString } from '@web3sheet/util'
 import { type HTMLAttributes, forwardRef, useCallback, useEffect, useMemo, useState } from 'react'
 import { cn } from '../lib/utils'

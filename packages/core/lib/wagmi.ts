@@ -1,17 +1,18 @@
 'use client'
 
-import { coinbaseWallet, metaMask, walletConnect, safe } from '@wagmi/connectors'
+import { coinbaseWallet, metaMask, safe, walletConnect } from '@wagmi/connectors'
 import { createClient } from 'viem'
 import {
   http,
+  type CreateConfigParameters,
   type CreateConnectorFn,
   type Storage,
   type Config as WagmiConfig,
   cookieStorage,
   createConfig,
-  createStorage, type CreateConfigParameters,
-} from 'wagmi';
-import type { MetaMaskConfig } from './config';
+  createStorage,
+} from 'wagmi'
+import type { MetaMaskConfig } from './config'
 import type { WalletConnectConfig } from './eth'
 
 export type SupportedWagmiConfig = Pick<CreateConfigParameters, 'chains' | 'transports' | 'ssr'>
@@ -53,7 +54,7 @@ export const createWeb3WalletWagmiConfig = ({
       ? { transports }
       : {
           client({ chain }) {
-            return createClient({ chain, transport: http() });
+            return createClient({ chain, transport: http() })
           },
         }),
     storage:
@@ -61,5 +62,5 @@ export const createWeb3WalletWagmiConfig = ({
       createStorage({
         storage: cookieStorage,
       }),
-  });
+  })
 }

@@ -22,9 +22,7 @@
     "./util/*": "./dist/util/*.js"
   },
   "sideEffects": false,
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -35,8 +33,8 @@
     "release:no-git": "pnpm build && pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/react": "19.0.11",
+    "@types/react-dom": "19.0.4",
     "@web3sheet/typescript-config": "workspace:*",
     "@web3sheet/ui": "workspace:*",
     "react": "19.0.0-rc-66855b96-20241106",
@@ -44,13 +42,13 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.32.1",
-    "@wagmi/connectors": "5.5.3",
+    "@wagmi/connectors": "5.11.2",
     "@walletconnect/ethereum-provider": "^2.14.0",
     "@web3sheet/util": "workspace:*",
     "react": "19.0.0-rc-66855b96-20241106",
     "usepref": "^1.0.1",
-    "viem": "2.21.54",
-    "wagmi": "2.13.5"
+    "viem": "2.57.14",
+    "wagmi": "2.19.5"
   },
   "engines": {
     "node": ">=22",
@@ -58,13 +56,5 @@
     "yarn": "use pnpm",
     "npm": "use pnpm"
   },
-  "keywords": [
-    "web3",
-    "sheet",
-    "eth",
-    "wagmi",
-    "ethereum",
-    "dapps",
-    "wallet"
-  ]
+  "keywords": ["web3", "sheet", "eth", "wagmi", "ethereum", "dapps", "wallet"]
 }

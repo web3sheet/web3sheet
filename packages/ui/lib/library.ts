@@ -8,8 +8,15 @@ import {
   IconButton,
   TabFullWidthButton,
 } from '../components/ui/button'
-import { Input } from '../components/ui/input';
-import { Tooltip } from '../components/ui/tooltip';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../components/ui/form'
+import { Input } from '../components/ui/input'
 import {
   Sheet,
   SheetContent,
@@ -18,18 +25,13 @@ import {
   SheetTitle,
 } from '../components/ui/sheet'
 import { Switch } from '../components/ui/switch'
+import { Tooltip } from '../components/ui/tooltip'
+import { CheckIcon } from '../icons/CheckIcon'
 import { CogIcon } from '../icons/CogIcon'
 import { FuelIcon } from '../icons/FuelIcon'
 import { LogOutIcon } from '../icons/LogOutIcon'
 import { SwitchArrowsIcon } from '../icons/SwitchArrowsIcon'
-import { CheckIcon } from '../icons/CheckIcon';
-import { XIcon } from '../icons/XIcon';
-import { Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage } from '../components/ui/form';
+import { XIcon } from '../icons/XIcon'
 
 export class Web3WalletComponentLibrary {
   // Utility components

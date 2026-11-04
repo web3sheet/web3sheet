@@ -4,7 +4,7 @@ import { type TokenDetails, useWallet } from '@web3sheet/core/hooks/useWallet'
 import { useUiLibrary } from '@web3sheet/core/providers/wallet-provider'
 import { formatBigIntTokenValue } from '@web3sheet/util/maths'
 import { collapseString } from '@web3sheet/util/string'
-import { type Dispatch, type ReactNode, type SetStateAction, useMemo, useState } from 'react';
+import { type Dispatch, type ReactNode, type SetStateAction, useMemo, useState } from 'react'
 import type { Address } from 'viem'
 import { GenericWalletProviderButton } from '../GenericWalletProviderButton'
 import { ConnectedNetworkAvatar } from '../NetworkAvatar'
@@ -13,16 +13,16 @@ import { isDynamicTokenRowProps, isTokenRowProps } from './WalletTab'
 import { TAB } from './index'
 
 export type CustomTabButton = {
-  id: string;
-  label: string;
+  id: string
+  label: string
 }
 
 export type MainTabConfig = {
-  connectedChildren?: ReactNode;
-  disconnectedChildren?: ReactNode;
-  hideWalletButton?: boolean;
-  hideNetworkButton?: boolean;
-  customButtons?: Array<CustomTabButton>;
+  connectedChildren?: ReactNode
+  disconnectedChildren?: ReactNode
+  hideWalletButton?: boolean
+  hideNetworkButton?: boolean
+  customButtons?: Array<CustomTabButton>
 }
 
 type MainTabProps = MainTabConfig & {
@@ -59,7 +59,14 @@ function StaticTokenAmount({ token }: { token: TokenDetails }) {
   )
 }
 
-export function MainTab({ setTab, connectedChildren, disconnectedChildren, hideNetworkButton, hideWalletButton, customButtons }: MainTabProps) {
+export function MainTab({
+  setTab,
+  connectedChildren,
+  disconnectedChildren,
+  hideNetworkButton,
+  hideWalletButton,
+  customButtons,
+}: MainTabProps) {
   const UI = useUiLibrary()
   const {
     hasName,
@@ -202,5 +209,5 @@ export function MainTab({ setTab, connectedChildren, disconnectedChildren, hideN
         </>
       )}
     </>
-  );
+  )
 }

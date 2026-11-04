@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import { useWallet } from './useWallet';
-import { watchAsset } from 'wagmi/actions';
+import { useState } from 'react'
+import { watchAsset } from 'wagmi/actions'
+import { useWallet } from './useWallet'
 
 export type AddTokenParams = {
-  symbol: string;
-  decimals: number;
-  address: string;
-  chainId?: number;
-  icon?: string;
+  symbol: string
+  decimals: number
+  address: string
+  chainId?: number
+  icon?: string
 }
 
 export function useAddToken({ address, icon, symbol, decimals, chainId }: AddTokenParams) {
-  const [isPending, setIsPending] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState<boolean>(false)
+  const [isSuccess, setIsSuccess] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
   const { config, chainId: connectedChainId, switchChainAsync } = useWallet()
 
   const addToken = async () => {
-    setIsPending(true);
-    setIsSuccess(false);
+    setIsPending(true)
+    setIsSuccess(false)
     try {
-      if (!chainId) throw new Error('Invalid chain');
+      if (!chainId) throw new Error('Invalid chain')
       if (connectedChainId !== chainId) {
         await switchChainAsync({ chainId })
-        if (chainId !== connectedChainId) throw new Error('Failed to switch chain');
+        if (chainId !== connectedChainId) throw new Error('Failed to switch chain')
       }
 
       const wasAdded = await watchAsset(config, {
@@ -37,19 +37,19 @@ export function useAddToken({ address, icon, symbol, decimals, chainId }: AddTok
       })
 
       if (!wasAdded) {
-        throw new Error('Failed to add token');
+        throw new Error('Failed to add token')
       }
 
-      setIsSuccess(true);
+      setIsSuccess(true)
     } catch (error) {
       if (error instanceof Error) {
-        setError(error.message);
+        setError(error.message)
       } else {
-        setError('Failed to add token');
+        setError('Failed to add token')
       }
     } finally {
-      setIsPending(false);
+      setIsPending(false)
     }
-  };
-  return { addToken, error, isPending, isSuccess };
+  }
+  return { addToken, error, isPending, isSuccess }
 }

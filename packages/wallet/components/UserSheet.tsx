@@ -7,9 +7,9 @@ import {
   useWalletSheet,
 } from '@web3sheet/core/providers/wallet-provider'
 import { Web3WalletComponentLibrary } from '@web3sheet/ui/lib/library'
-import { type ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { type GenericTabDetails, TAB, type TabDetails } from './tabs';
-import { type MainTabConfig, MainTab } from './tabs/MainTab';
+import { type ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
+import { type GenericTabDetails, TAB, type TabDetails } from './tabs'
+import { MainTab, type MainTabConfig } from './tabs/MainTab'
 
 export type InteractionConfig = {
   disableKeyboardShortcuts?: boolean
@@ -60,26 +60,36 @@ export function UserSheetComponent({
 
   const mainTab = <MainTab setTab={setTab} {...config.mainTabConfig} />
 
-  const nonPrimaryTabProps = useMemo(() => ({
-    handleBackButtonClick: () => setTab(TAB.MAIN),
-  }), [])
+  const nonPrimaryTabProps = useMemo(
+    () => ({
+      handleBackButtonClick: () => setTab(TAB.MAIN),
+    }),
+    [],
+  )
 
-  const customTabs = useMemo(() =>
-    config.customTabs?.reduce(
-    (acc, { id, tab }) => {
-      acc[id] = tab(nonPrimaryTabProps)
-      return acc
-    },
-    {} as Record<string, ReactNode>,
-  ), [config.customTabs, nonPrimaryTabProps])
+  const customTabs = useMemo(
+    () =>
+      config.customTabs?.reduce(
+        (acc, { id, tab }) => {
+          acc[id] = tab(nonPrimaryTabProps)
+          return acc
+        },
+        {} as Record<string, ReactNode>,
+      ),
+    [config.customTabs, nonPrimaryTabProps],
+  )
 
-  const enabledTabs = useMemo(() => config.tabs.reduce(
-    (acc, { id, tab }) => {
-      acc[id] = tab
-      return acc
-    },
-    {} as Record<TAB, (props: any) => ReactNode>,
-  ), [config.tabs])
+  const enabledTabs = useMemo(
+    () =>
+      config.tabs.reduce(
+        (acc, { id, tab }) => {
+          acc[id] = tab
+          return acc
+        },
+        {} as Record<TAB, (props: any) => ReactNode>,
+      ),
+    [config.tabs],
+  )
 
   const tabs: Record<TAB, ReactNode> = useMemo(() => {
     return {
@@ -108,7 +118,7 @@ export function UserSheetComponent({
       // Checks for the ctrl + k key combination
       if (
         (event.ctrlKey || event.metaKey) &&
-        (event.key === config.interaction?.toggleSheetHotkey ?? 'u')
+        event.key === (config.interaction?.toggleSheetHotkey ?? 'u')
       ) {
         event.preventDefault()
         setOpen((prev) => !prev)

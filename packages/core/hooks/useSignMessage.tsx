@@ -1,4 +1,4 @@
-import { useSignMessage as wagmiUseSignMessage, type UseSignMessageParameters } from 'wagmi';
+import { type UseSignMessageParameters, useSignMessage as wagmiUseSignMessage } from 'wagmi'
 import { useWallet } from './useWallet'
 
 export function useSignMessage(params?: UseSignMessageParameters) {

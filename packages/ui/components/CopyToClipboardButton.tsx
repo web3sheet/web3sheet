@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
+import { toast } from 'sonner'
 import { ClipboardIcon } from '../icons/ClipboardIcon'
 import { cn } from '../lib/utils'
 import { Button } from './ui/button'
-import { toast } from 'sonner';
 
 export interface CopyToClipboardButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   textToCopy: string
@@ -16,10 +16,7 @@ export interface CopyToClipboardButtonProps extends React.ButtonHTMLAttributes<H
  * @param textToCopy The text to be copied to the clipboard.
  * @param onCopyComplete The callback function to be called after the text is copied.
  */
-function copyToClipboard(
-  textToCopy: string,
-  onCopyComplete?: () => void,
-) {
+function copyToClipboard(textToCopy: string, onCopyComplete?: () => void) {
   void navigator.clipboard.writeText(textToCopy)
   if (onCopyComplete) {
     onCopyComplete()

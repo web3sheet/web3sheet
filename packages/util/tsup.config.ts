@@ -8,7 +8,7 @@ export default defineConfig([
     tsconfig: path.resolve(__dirname, './tsconfig.build.json'),
     entry: ['index.ts', 'maths.ts', 'string.ts'],
     bundle: false,
-    format: ['esm' as Format],
+    format: ['esm' as Format, 'cjs' as Format],
     outDir: 'dist',
     dts: true,
     esbuildOptions(options, _context) {

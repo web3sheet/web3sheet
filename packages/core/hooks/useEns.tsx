@@ -19,12 +19,8 @@ export type UseEnsProps = {
   disableAvatarFetch?: boolean
 }
 
-  export function useEns({
-  address,
-  enabled,
-  config,
-}: UseEnsProps ): UseEnsType {
-  const wagmiConfig = useConfig({config})
+export function useEns({ address, enabled, config }: UseEnsProps): UseEnsType {
+  const wagmiConfig = useConfig({ config })
 
   const ensConfig = useMemo(() => {
     return {

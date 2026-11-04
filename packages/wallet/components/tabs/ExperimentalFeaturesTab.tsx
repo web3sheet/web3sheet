@@ -135,7 +135,7 @@ function ExperimentalFeatureFlags<Flag extends string>({
             </span>
             <p className="font-normal">{experimentalFeatureFlagsInfo[flag]?.description}</p>
           </div>
-        );
+        )
       })}
     </>
   )

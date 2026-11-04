@@ -1,6 +1,6 @@
 import { useWallet } from '@web3sheet/core/hooks/useWallet'
 import { cn } from '@web3sheet/ui/lib/utils'
-import { Avatar, AvatarFallback } from '@web3sheet/ui/ui/avatar'
+import { Avatar } from '@web3sheet/ui/ui/avatar'
 import { arbitrum, arbitrumSepolia, mainnet, sepolia } from 'viem/chains'
 import { FlaskIcon } from '../icons/FlaskIcon'
 import { ArbitrumLogo } from '../icons/logos/ArbitrumLogo'
@@ -71,9 +71,7 @@ export function NetworkAvatar({
   return (
     <div className={cn(avatarSize[size], 'relative', className)}>
       <Avatar className={cn(avatarSize[size], className)}>
-        {<NetworkIcon id={id} className="aspect-square h-full w-full" /> ?? (
-          <AvatarFallback className="aspect-square h-full w-full" />
-        )}
+        <NetworkIcon id={id} className="aspect-square h-full w-full" />
       </Avatar>
       {testnet ? (
         <div className={cn('absolute bottom-0 right-0', testnetIconSize[size])}>

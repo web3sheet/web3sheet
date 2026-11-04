@@ -15,9 +15,18 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./string": "./dist/string.js",
-    "./maths": "./dist/maths.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./string": {
+      "import": "./dist/string.js",
+      "require": "./dist/string.cjs"
+    },
+    "./maths": {
+      "import": "./dist/maths.js",
+      "require": "./dist/maths.cjs"
+    }
   },
   "sideEffects": false,
   "files": ["dist/"],
@@ -38,5 +47,5 @@
     "yarn": "use pnpm",
     "npm": "use pnpm"
   },
-  "keywords": ["web3", "sheet", "eth" ,"wagmi", "ethereum", "dapps", "wallet"]
+  "keywords": ["web3", "sheet", "eth", "wagmi", "ethereum", "dapps", "wallet"]
 }

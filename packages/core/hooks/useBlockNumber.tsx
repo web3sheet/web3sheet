@@ -1,4 +1,4 @@
-import { useBlockNumber as wagmiUseBlockNumber, type UseBlockNumberParameters } from 'wagmi';
+import { type UseBlockNumberParameters, useBlockNumber as wagmiUseBlockNumber } from 'wagmi'
 import { useWallet } from './useWallet'
 
 export function useBlockNumber(params?: UseBlockNumberParameters) {

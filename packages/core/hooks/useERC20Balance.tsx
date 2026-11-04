@@ -1,6 +1,6 @@
-import { useBalance, type UseBalanceParameters } from 'wagmi';
+import type { Address } from 'viem'
+import { type UseBalanceParameters, useBalance } from 'wagmi'
 import { useWallet } from './useWallet'
-import type { Address } from 'viem';
 
 export type UseERC20BalanceParams = UseBalanceParameters & {
   tokenAddress?: Address
