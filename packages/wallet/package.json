@@ -1,8 +1,8 @@
 {
   "name": "@web3sheet/wallet",
   "description": "A web3 wallet interaction and sheet library for React apps",
-  "version": "0.1.36",
-  "license": "GPL-3",
+  "version": "0.2.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/web3sheet/web3sheet.git",

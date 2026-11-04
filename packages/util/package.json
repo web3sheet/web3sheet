@@ -1,8 +1,8 @@
 {
   "name": "@web3sheet/util",
   "description": "A collection of utility functions for Web3Sheet",
-  "version": "0.1.0",
-  "license": "GPL-3",
+  "version": "0.2.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/web3sheet/web3sheet.git",
